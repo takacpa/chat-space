@@ -109,41 +109,49 @@
       font-size: 14px;
       color: #434a54;
       margin-bottom: 46px;
+      &--image{
+        height: 100px;
+      }
     }
   }
   &__message-form{
     height: 90px;
+    width: 100%;
     background-color: #d2d2d2;
     padding: 0 40px;
     display: flex;
     align-items: center;
-    .message-form__box{
-      height: 50px;
-      padding: 0 10px;
-      background-color: #ffffff;
-      display: flex;
-      align-items: center;
+    .new_message{
       width: 100%;
-      .message-form__text{
+      display: flex;
+      .message-form__box{
         height: 50px;
+        padding: 0 10px;
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
         width: 100%;
-        border: none;
-      }
-      .message-form__image{
-        padding-left: 10px;
-        .message-form__file-select{
-          display: none;
+        .message-form__text{
+          height: 50px;
+          width: 100%;
+          border: none;
+        }
+        .message-form__image{
+          padding-left: 10px;
+          .message-form__file-select{
+            display: none;
+          }
         }
       }
-    }
-    .message-form__send-btn{
-      width: 100px;
-      height: 50px;
-      padding: 0 30px;
-      margin-left: 15px;
-      background-color: #38aef0;
-      color: white;
-      cursor: pointer;
+      .message-form__send-btn{
+        width: 100px;
+        height: 50px;
+        padding: 0 30px;
+        margin-left: 15px;
+        background-color: #38aef0;
+        color: white;
+        cursor: pointer;
+      }
     }
   }
 }
