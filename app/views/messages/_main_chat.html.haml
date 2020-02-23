@@ -2,31 +2,21 @@
   .chat-main__group-info
     .group-info__left
       .group-info__group-name
-        test
+        = @group.name
       .group-info__group-member
-        Member:masa
-    =link_to "#" do
-      .group-info__right
+        Member:
+        - @group.users.each do |user|
+          = user.name
+    .group-info__right
+      = link_to edit_group_path(@group.id) do
         EDIT
   .chat-main__message-list
-    .message-list__upper
-      .massage-list__name
-        masa
-      .message-list__date
-        2020/02/15(sat)18:18:00
-    .message-list__text
-      おはよう！
-    .message-list__upper
-      .message-list__name
-        masa
-      .message-list__date
-        2020/02/15(sat)18:18:00
-    .message-list__text
-      おはよう！
+    = render partial: 'message', collection:@messages
   .chat-main__message-form
-    .message-form__box
-      %input.message-form__text{placeholder: "type a message", type: "text"}
-      %label{class: "message-form__image"}
-        = icon('fas', 'image')
-        %input.message-form__file-select{type: "file"}
-    %input.message-form__send-btn{type: "submit", value: "Send"}
+    =form_for [@group,@message] do |f|
+      .message-form__box
+        =f.text_field :body, class:'message-form__text',placeholder: "type a message"
+        =f.label :image, class: 'message-form__image' do
+          = icon('fas', 'image')
+          =f.file_field :image, class: 'message-form__file-select'
+      =f.submit 'Send', class: 'message-form__send-btn'
