@@ -2,7 +2,7 @@ $(function(){
   function buildHTML(message){
     if(message.image.url){
       var html =
-       `<div class="message-list">
+       `<div class="message-list" data-message-id=${message.id} >
           <div class="message-list__upper">
             <div class="massage-list__name">
             ${message.user_name}
@@ -19,7 +19,7 @@ $(function(){
       return html;
     } else {
       var html =
-      `<div class="message-list">
+      `<div class="message-list" data-message-id=${message.id} >
           <div class="message-list__upper">
             <div class="massage-list__name">
             ${message.user_name}
@@ -57,5 +57,30 @@ $(function(){
     .fail(function() {
       alert("メッセージ送信に失敗しました");
   });
-  })
+  });
+  var reloadMessages = function() {
+    var last_message_id = $('.message-list:last').data("message-id");
+    $.ajax({
+      url: "./api/messages",
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages){
+      if (messages.length !== 0){
+      var insertHTML = '';
+      $.each(messages, function(i, message){
+        insertHTML += buildHTML(message)
+      });
+      $('.chat-main__message-lists').append(insertHTML);
+      $('.chat-main__message-lists').animate({ scrollTop: $('.chat-main__message-lists')[0].scrollHeight})
+      }
+    })
+    .fail(function(){
+      alert('error');
+    });
+  };
+  if (document.location.href.match(/\/groups\/\d+\/messages/)) {
+    setInterval(reloadMessages, 7000);
+  }
 });
