@@ -7,9 +7,9 @@
         Member:
         - @group.users.each do |user|
           = user.name
-    .group-info__right
-      = link_to edit_group_path(@group.id) do
-        EDIT
+    = link_to edit_group_path(@group.id) do
+      .group-info__right
+        Edit
   .chat-main__message-lists
     = render partial: 'message', collection:@messages
   .chat-main__message-form
