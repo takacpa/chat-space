@@ -12,7 +12,7 @@ $(function(){
             </div>
           </div>
           <div class="message-list__text">
-          ${message.body}
+            <p>${message.body}</p>
           <img class="message-list__text--image" src=${message.image.url} >
           </div>
         </div>`
@@ -29,7 +29,7 @@ $(function(){
             </div>
           </div>
           <div class="message-list__text">
-          ${message.body}
+            <p>${message.body}</p>
           </div>
         </div>`
       return html;
